@@ -1,4 +1,4 @@
-#include "Shader.h"
+﻿#include "Shader.h"
 
 Shader::Shader(const std::string& _name, std::filesystem::path _vertexShaderPath, std::filesystem::path _fragmentShaderPath)
 	: m_Name(_name)
@@ -32,6 +32,11 @@ void Shader::SetInt(const std::string& _name, int _value)
 void Shader::SetFloat(const std::string& _name, float _value)
 {
 	glUniform1f(glGetUniformLocation(m_ShaderProgramID, _name.c_str()), _value);
+}
+
+void Shader::SetMat4(const std::string& _name, const glm::mat4& _value)
+{
+	glUniformMatrix4fv(glGetUniformLocation(m_ShaderProgramID, _name.c_str()), 1, GL_FALSE, glm::value_ptr(_value));
 }
 
 const std::string Shader::ReadFromFile(std::filesystem::path _shaderPath)
