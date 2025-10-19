@@ -2,6 +2,9 @@
 #include "Shader.h"
 #include "Camera.h"
 
+#define STB_IMAGE_IMPLEMENTATION
+#include <stb_image.h>
+
 void FrameBufferSizeCallback(GLFWwindow* _window, int _width, int _height);
 void MouseCallback(GLFWwindow* _window, double _posX, double _posY);
 void ScrollCallback(GLFWwindow* _window, double _xOffset, double _yOffset);
@@ -59,7 +62,7 @@ int main()
 	glBindTexture(GL_TEXTURE_2D, texture);
 	{
 		int width, height, channels;
-		unsigned char* data = stbi_load("Textures/container.jpg", &width, &height, &channels, 0);
+		unsigned char* data = stbi_load("Assets/Textures/container.jpg", &width, &height, &channels, 0);
 
 		if (data)
 		{
@@ -79,7 +82,7 @@ int main()
 	glBindTexture(GL_TEXTURE_2D, texture2);
 	{
 		int width, height, channels;
-		unsigned char* data = stbi_load("Textures/awesomeface.png", &width, &height, &channels, 0);
+		unsigned char* data = stbi_load("Assets/Textures/awesomeface.png", &width, &height, &channels, 0);
 
 		if (data)
 		{
@@ -94,7 +97,7 @@ int main()
 	}
 
 	// Shader prep
-	Shader shader("Default Shader", "Shaders/shader.vert", "Shaders/shader.frag");
+	Shader shader("Default Shader", "Assets/Shaders/shader.vert", "Assets/Shaders/shader.frag");
 	
 	// Position, Color, UV
 	float vertices[] = {
